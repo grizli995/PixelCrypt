@@ -16,31 +16,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: List directory contents
-        run: |
-          dir
-      
-
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
       - name: Change working directory
         run: |
-          cd WebApp/pwa-app
+          cd PixelCrypt/PixelCrypt/WebApp/pwa-app
 
       - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory: WebApp/pwa-app
+        working-directory: PixelCrypt/PixelCrypt/WebApp/pwa-app
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: WebApp/pwa-app/dist
+          path: PixelCrypt/PixelCrypt/WebApp/pwa-app/dist
 
   deploy:
     runs-on: ubuntu-latest
