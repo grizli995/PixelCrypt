@@ -10,7 +10,7 @@ import { of } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'PixelCrypt';
+  title = 'pwa-app';
   embedExtractForm: FormGroup;
   embedExtractOption = 'embed';
   extractedMessage = '';
