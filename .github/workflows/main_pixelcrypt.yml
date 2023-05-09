@@ -22,20 +22,20 @@ jobs:
           node-version: '16.x'
       - name: Change working directory
         run: |
-          cd "C:\Files\Faks\Faks\Diplomski rad\Implementacija\PixelCrypt\PixelCrypt\WebApp\pwa-app"
+          cd "C:\\Files\\Faks\\Faks\\Diplomski rad\\Implementacija\\PixelCrypt\\PixelCrypt\\WebApp\\pwa-app"
 
       - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory: "C:\Files\Faks\Faks\Diplomski rad\Implementacija\PixelCrypt\PixelCrypt\WebApp\pwa-app"
+        working-directory: "C:\\Files\\Faks\\Faks\\Diplomski rad\\Implementacija\\PixelCrypt\\PixelCrypt\\WebApp\\pwa-app"
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: "C:\Files\Faks\Faks\Diplomski rad\Implementacija\PixelCrypt\PixelCrypt\WebApp\pwa-app"
+          path: "C:\\Files\\Faks\\Faks\\Diplomski rad\\Implementacija\\PixelCrypt\\PixelCrypt\\WebApp\\pwa-app"
 
   deploy:
     runs-on: ubuntu-latest
