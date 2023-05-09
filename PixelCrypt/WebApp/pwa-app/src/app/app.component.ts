@@ -10,6 +10,7 @@ import { of } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  title = 'PixelCrypt';
   embedExtractForm: FormGroup;
   embedExtractOption = 'embed';
   extractedMessage = '';
