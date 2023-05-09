@@ -1,0 +1,173 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 800px; /* Increase the width of the mat-card */
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.mat-card {
+  padding: 20px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.input-field {
+  display: block;
+  margin-bottom: 15px;
+}
+
+mat-radio-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+  .mat-radio-button {
+    display: none; /* Hide the default radio button */
+  }
+
+
+.mat-mdc-form-field {
+  color: white;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.mat-form-field .mat-form-field-underline {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mat-input-element {
+  color: white;
+}
+
+.mat-radio-label-content {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.embed-extract-label {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #3f51b5; /* Set the color to match the submit button */
+}
+
+.mat-radio-label {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #3f51b5;
+  border-radius: 20px;
+  color: #3f51b5;
+  cursor: pointer;
+}
+
+.mat-radio-checked .mat-radio-label {
+  background-color: #3f51b5;
+  color: white;
+}
+
+/* Style the image upload input */
+.input-image-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Add styles for the slide toggle */
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #3f51b5;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #3f51b5;
+}
+
+.mat-slide-toggle .mat-slide-toggle-thumb {
+  background-color: #3f51b5;
+}
+
+.mat-slide-toggle .mat-slide-toggle-bar {
+  background-color: rgba(63, 81, 181, 0.5);
+}
+
+.embed-extract-toggle {
+  display: block;
+  margin: 1rem auto;
+  transform: scale(1.5);
+}
+
+.mat-form-field {
+  margin: 0 2rem;
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo-container img {
+  max-width: 250px; /* Adjust the size of your logo if necessary */
+}
+
+.submit-button {
+  background-color: rgba(255,184,28,255) !important;
+  color: black !important;
+  margin: 2rem;
+}
+
+.centered-element {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results-label {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.download-link {
+  color: #3f51b5;
+  text-decoration: none;
+  border: rgba(255,184,28,255);
+  border-bottom-style: groove;
+  padding: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.message-container {
+  padding: 1rem;
+  text-align: center;
+}
+
+.extracted-message {
+  color: rgba(255,184,28,255) !important;
+}
+
+.extracted-message-tittle{
+  color: white;
+}
+
+.results-card{
+  margin-top: 3rem;
+}
+
+.download-link-text {
+  color: rgba(255,184,28,255) ;
+}
+
+.download-link-text:hover {
+  color: rgba(255, 255, 255, 0.5);
+  border: rgba(255, 255, 255, 0.5);
+  border-bottom-style: groove;
+}

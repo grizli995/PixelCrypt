@@ -1,0 +1,65 @@
+<div class="logo-container">
+  <img src="assets/PixelCrypt_logo.png" alt="Your Logo" />
+</div>
+<mat-card>
+  <mat-slide-toggle
+  [checked]="embedExtractOption === 'embed'"
+  (change)="onEmbedExtractChange($event.checked)"
+  class="embed-extract-toggle"
+>
+  {{ embedExtractOption === 'embed' ? 'Embed' : 'Extract' }}
+</mat-slide-toggle>
+
+  <form [formGroup]="embedExtractForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="embedExtractOption === 'embed'">
+      <mat-form-field appearance="fill" class="input-field">
+        <mat-label>Message</mat-label>
+        <input matInput formControlName="message" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="input-field">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    <div *ngIf="embedExtractOption === 'embed'">
+      <input
+        type="file"
+        id="imageToUpload"
+        (change)="onImageUpload($event)"
+        class="input-image-upload centered-element"
+      />
+    </div>
+
+    <div *ngIf="embedExtractOption === 'extract'">
+      <input
+        type="file"
+        id="imageToExtract"
+        (change)="onImageUpload($event)"
+        class="input-image-upload centered-element"
+      />
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" class="submit-button centered-element">Submit</button>
+  </form>
+</mat-card>
+
+<mat-card class="results-card">
+  <h2 class="results-label">Results</h2>
+
+  <ng-container *ngIf="embedExtractOption === 'embed' && hasEmbedResult">
+    <p class="centered-element">Download link:</p>
+    <a *ngIf="downloadLink" [href]="downloadLink" download class="download-link centered-element download-link-text">
+      Download Encrypted Image
+    </a>
+    <p *ngIf="!downloadLink" class="centered-element">Failed to generate download link.</p>
+  </ng-container>
+
+  <ng-container *ngIf="embedExtractOption === 'extract' && hasExtractResult">
+    <div class="message-container centered-element">
+      <p class="extracted-message-tittle">Extracted message: </p>
+      <p class="extracted-message">{{ extractedMessage }}</p>
+    </div>
+  </ng-container>
+</mat-card>
