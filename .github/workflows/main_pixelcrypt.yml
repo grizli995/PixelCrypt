@@ -55,4 +55,4 @@ jobs:
           app-name: 'PixelCrypt'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B2C01B012DC34856B1A6F0360BB10000 }}
-          package: ./dist/<project-name>
+          package: ./dist/pwa-app
