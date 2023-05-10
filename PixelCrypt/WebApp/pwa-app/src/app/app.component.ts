@@ -54,7 +54,7 @@ export class AppComponent {
               this.isSubmitButtonDisabled = false;
             }),
             catchError((error) => {
-              if (!error) return of(null);
+              if (!error.message) return of(null);
               console.error('Error during embed request:', error.message);
               alert('Error during embed request: ' + error.message);
               this.isSubmitButtonDisabled = false;
@@ -76,7 +76,7 @@ export class AppComponent {
               this.isSubmitButtonDisabled = false;
             }),
             catchError((error) => {
-              if (!error) return of(null);
+              if (!error.message) return of(null);
               console.error('Error during extract request:', error.message);
               alert('Error during extract request: ' + error.message);
               this.isSubmitButtonDisabled = false;
