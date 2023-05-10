@@ -42,11 +42,13 @@ namespace PixelCrypt.API.Controllers
             }
             catch (CapacityException ce)
             {
+                _logger.LogError(ce.Message, ce);
                 result.ErrorMessage = ce.Message;
                 return Ok(result);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message, ex);
                 result.ErrorMessage = "Internal Server Error: " + ex.Message;
                 return StatusCode(500, result);
             }
@@ -82,11 +84,13 @@ namespace PixelCrypt.API.Controllers
             }
             catch (CapacityException ce)
             {
+                _logger.LogError(ce.Message, ce);
                 result.ErrorMessage = ce.Message;
                 return Ok(result);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message, ex);
                 result.ErrorMessage = "Internal Server Error: " + ex.Message;
                 return StatusCode(500, result);
             }
