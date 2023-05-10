@@ -12,15 +12,14 @@ builder.Services.AddF5Services();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", builder => builder
+    options.AddPolicy("AllowSpecificOrigin", builder => builder
         .WithOrigins("https://pixelcrypt.azurewebsites.net/") 
         .AllowAnyMethod()
-        .AllowAnyHeader()
-        .AllowCredentials());
+        .AllowAnyHeader());
 });
 
 var app = builder.Build();
-app.UseCors("CorsPolicy");
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
