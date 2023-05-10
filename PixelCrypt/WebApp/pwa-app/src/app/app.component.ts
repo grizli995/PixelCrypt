@@ -52,6 +52,7 @@ export class AppComponent {
               this.createDownloadLink();
               console.log('Embed response:', response);
               this.isSubmitButtonDisabled = false;
+              return of(null);
             }),
             catchError((error) => {
               console.error('Error during embed request:', error.message);
@@ -73,6 +74,7 @@ export class AppComponent {
               this.hasExtractResult = true;
               this.extractedMessage = response.message;
               this.isSubmitButtonDisabled = false;
+              return of(null);
             }),
             catchError((error) => {
               console.error('Error during extract request:', error.message);
