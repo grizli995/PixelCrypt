@@ -47,7 +47,8 @@ namespace PixelCrypt.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal Server Error: " + ex.Message);
+                result.ErrorMessage = "Internal Server Error: " + ex.Message;
+                return StatusCode(500, result);
             }
             var embeddedImage = System.IO.File.ReadAllBytes(embeddedImagePath);
             if (System.IO.File.Exists(embeddedImagePath))
@@ -86,7 +87,8 @@ namespace PixelCrypt.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal Server Error: " + ex.Message);
+                result.ErrorMessage = "Internal Server Error: " + ex.Message;
+                return StatusCode(500, result);
             }
 
             // Create and return the response
@@ -97,7 +99,6 @@ namespace PixelCrypt.API.Controllers
 
         private string ProcessImage(Stream imageStream, string password, string message)
         {
-
             var fileName = Path.Combine(GetTempStoragePath(), Guid.NewGuid().ToString() + ".jpg");
             var outPath = fileName.Substring(0, fileName.Length - 4) + "_embedded.jpg";
 
