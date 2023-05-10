@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class EmbedExtractService {
   constructor(private http: HttpClient) {
-    this.apiUrl = 'https://localhost:7292/EmbedExtract/';
+    this.apiUrl = 'https://pixelcrypt.azurewebsites.net/EmbedExtract/';
   }
 
   public apiUrl:string;
