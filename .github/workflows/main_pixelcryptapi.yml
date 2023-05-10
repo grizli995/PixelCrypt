@@ -23,11 +23,11 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release PixelCrypt.API.csproj
+        run: dotnet build --configuration Release PixelCrypt.API/PixelCrypt.API.csproj
         working-directory: PixelCrypt/
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp PixelCrypt.API.csproj
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp PixelCrypt.API/PixelCrypt.API.csproj
         working-directory: PixelCrypt/
 
       - name: Upload artifact for deployment job
