@@ -23,7 +23,6 @@ export class EmbedExtractService {
         return { downloadUrl };
       })
     );
-    // return this.http.post(this.apiUrl + 'embed', formData);
   }
 
   extract(formData: FormData): Observable<{ message: string }> {

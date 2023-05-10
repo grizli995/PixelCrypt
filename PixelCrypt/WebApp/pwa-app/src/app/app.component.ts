@@ -52,6 +52,7 @@ export class AppComponent {
             }),
             catchError((error) => {
               console.error('Error during embed request:', error);
+              alert('Error during embed request: ' + error);
               return of(null);
             })
           )
@@ -70,6 +71,7 @@ export class AppComponent {
             }),
             catchError((error) => {
               console.error('Error during extract request:', error);
+              alert('Error during extract request: ' + error);
               return of(null);
             })
           )
