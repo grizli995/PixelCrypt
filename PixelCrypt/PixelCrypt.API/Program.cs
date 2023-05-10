@@ -13,7 +13,7 @@ builder.Services.AddF5Services();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", builder => builder
-        .WithOrigins("https://pixelcrypt.azurewebsites.net/") 
+        .WithOrigins("https://pixelcrypt.azurewebsites.net") 
         .AllowAnyMethod()
         .AllowAnyHeader());
 });
