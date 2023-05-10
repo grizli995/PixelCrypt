@@ -14,12 +14,15 @@ namespace PixelCrypt.API.Controllers
     {
         private readonly ILogger<EmbedExtractController> _logger;
         private readonly IF5Service _f5Service;
+        private readonly IHostEnvironment _environment;
         private List<string> _savedFiles = new List<string>();
 
-        public EmbedExtractController(ILogger<EmbedExtractController> logger, IF5Service f5Service)
+        public EmbedExtractController(ILogger<EmbedExtractController> logger, IF5Service f5Service,
+            IHostEnvironment environment)
         {
             _logger = logger;
             _f5Service = f5Service;
+            _environment = environment;
         }
 
         [HttpPost("embed")]
@@ -94,7 +97,8 @@ namespace PixelCrypt.API.Controllers
 
         private string ProcessImage(Stream imageStream, string password, string message)
         {
-            var fileName = Path.Combine("temp", Guid.NewGuid().ToString() + ".jpg");
+
+            var fileName = Path.Combine(GetTempStoragePath(), Guid.NewGuid().ToString() + ".jpg");
             var outPath = fileName.Substring(0, fileName.Length - 4) + "_embedded.jpg";
 
             Image image = Image.FromStream(imageStream);
@@ -121,6 +125,13 @@ namespace PixelCrypt.API.Controllers
             }
 
             return message;
+        }
+
+        private string GetTempStoragePath()
+        {
+            string tempFolderPath = Path.Combine(_environment.ContentRootPath, "temp");
+            Directory.CreateDirectory(tempFolderPath); // This ensures that the 'temp' folder exists.
+            return tempFolderPath;
         }
     }
 }
