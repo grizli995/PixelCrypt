@@ -13,7 +13,7 @@ builder.Services.AddF5Services();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder => builder
-        .WithOrigins("http://localhost:4200") // Replace with your Angular app's URL
+        .WithOrigins("https://pixelcrypt.azurewebsites.net/") 
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials());
