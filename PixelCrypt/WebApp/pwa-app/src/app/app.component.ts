@@ -51,8 +51,8 @@ export class AppComponent {
               console.log('Embed response:', response);
             }),
             catchError((error) => {
-              console.error('Error during embed request:', error);
-              alert('Error during embed request: ' + error.error.errorMessage);
+              console.error('Error during embed request:', error.message);
+              alert('Error during embed request: ' + error.message);
               return of(null);
             })
           )
@@ -70,8 +70,8 @@ export class AppComponent {
               this.extractedMessage = response.message;
             }),
             catchError((error) => {
-              console.error('Error during extract request:', error);
-              alert('Error during extract request: ' + error.error.errorMessage);
+              console.error('Error during extract request:', error.message);
+              alert('Error during extract request: ' + error.message);
               return of(null);
             })
           )
