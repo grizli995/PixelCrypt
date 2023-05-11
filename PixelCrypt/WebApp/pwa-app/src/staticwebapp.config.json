@@ -1,0 +1,12 @@
+{
+    "mimeTypes": {
+      "webmanifest": "application/manifest+json"
+    },
+    "routes": [
+      {
+        "route": "/*",
+        "serve": "/index.html",
+        "statusCode": 200
+      }
+    ]
+  }
