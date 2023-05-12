@@ -58,8 +58,11 @@ export class AppComponent {
               this.isLoading = false;
             }),
             catchError((error) => {
-              if (!error.message) return of(null);
-              console.error('Error during embed request:', error.message);
+              if (error.error && error.error.ErrorMessage) {
+                console.error('Error during embed request:', error.error.ErrorMessage);
+              } else {
+                console.error('Error during embed request:', error.message);
+              }
               this.isSubmitButtonDisabled = false;
               this.isLoading = false;
               return of(null);
@@ -81,8 +84,11 @@ export class AppComponent {
               this.isLoading = false;
             }),
             catchError((error) => {
-              if (!error.message) return of(null);
-              console.error('Error during extract request:', error.message);
+              if (error.error && error.error.ErrorMessage) {
+                console.error('Error during embed request:', error.error.ErrorMessage);
+              } else {
+                console.error('Error during embed request:', error.message);
+              }
               this.isSubmitButtonDisabled = false;
               this.isLoading = false;
               return of(null);

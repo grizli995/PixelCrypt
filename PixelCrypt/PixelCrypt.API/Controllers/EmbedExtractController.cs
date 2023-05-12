@@ -34,7 +34,6 @@ namespace PixelCrypt.API.Controllers
                 return BadRequest("Invalid input.");
             }
 
-            var result = new EmbedResult();
             string embeddedImagePath;
             try
             {
@@ -42,29 +41,37 @@ namespace PixelCrypt.API.Controllers
             }
             catch (CapacityException ce)
             {
-                _logger.LogError(ce.Message, ce);
-                result.ErrorMessage = ce.Message;
-                return Ok(result);
+                _logger.LogError(ce, ce.Message); // Use exception overload
+                return BadRequest(new { ErrorMessage = ce.Message }); // Return BadRequest with error message
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
-                result.ErrorMessage = "Internal Server Error: " + ex.Message;
-                return StatusCode(500, result);
+                _logger.LogError(ex, ex.Message); // Use exception overload
+                return StatusCode(500, new { ErrorMessage = "Internal Server Error: " + ex.Message });
             }
-            var embeddedImage = System.IO.File.ReadAllBytes(embeddedImagePath);
-            if (System.IO.File.Exists(embeddedImagePath))
+
+            try
             {
-                byte[] imageData = System.IO.File.ReadAllBytes(embeddedImagePath);
+                if (System.IO.File.Exists(embeddedImagePath))
+                {
+                    byte[] imageData = System.IO.File.ReadAllBytes(embeddedImagePath);
+                    string contentType = "image/jpeg";
 
-                string contentType = "image/jpeg";
-
-                return File(imageData, contentType);
+                    return File(imageData, contentType);
+                }
+                else
+                {
+                    // Return a 404 error if the file does not exist
+                    return NotFound("Embedded image not found.");
+                }
             }
-            else
+            finally
             {
-                // Return a 404 error if the file does not exist
-                return NotFound();
+                // Clean up the generated file, if it exists
+                if (System.IO.File.Exists(embeddedImagePath))
+                {
+                    System.IO.File.Delete(embeddedImagePath);
+                }
             }
         }
 
