@@ -20,6 +20,7 @@ export class AppComponent {
   uploadedImage: File | null = null;
   downloadLink = '';
   isLoading = false;
+  isNotInstalled = true;
 
   private deferredPrompt: any;
 
@@ -40,8 +41,14 @@ export class AppComponent {
       // Stash the event so it can be triggered later
       this.deferredPrompt = event;
     });
+    if (window.matchMedia('(display-mode: standalone)').matches) {  
+      // do things here  
+      // set a variable to be used when calling something  
+      // e.g. call Google Analytics to track standalone use   
+      this.isNotInstalled = false;
+    }
   }
-  
+
   onEmbedExtractChange(checked: boolean) {
     this.embedExtractOption = checked ? 'embed' : 'extract';
   }
@@ -133,4 +140,5 @@ export class AppComponent {
     // We no longer need the prompt, clear it up
     this.deferredPrompt = null;
   }
+  
 }
