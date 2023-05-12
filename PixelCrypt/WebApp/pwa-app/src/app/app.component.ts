@@ -21,6 +21,7 @@ export class AppComponent {
   downloadLink = '';
   isLoading = false;
 
+  private deferredPrompt: any;
 
   constructor(private formBuilder: FormBuilder,
     private embedExtractService: EmbedExtractService,
@@ -31,6 +32,16 @@ export class AppComponent {
     });
   }
 
+  ngOnInit() {
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('👍', 'beforeinstallprompt', event);
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      event.preventDefault();
+      // Stash the event so it can be triggered later
+      this.deferredPrompt = event;
+    });
+  }
+  
   onEmbedExtractChange(checked: boolean) {
     this.embedExtractOption = checked ? 'embed' : 'extract';
   }
@@ -108,5 +119,18 @@ export class AppComponent {
   onImageUpload(event: any) {
     console.log('Image uploaded:', event.target.files[0]);
     this.uploadedImage = event.target.files[0];
+  }
+  
+  async installPwa() {
+    if (!this.deferredPrompt) {
+      return;
+    }
+    // Show the prompt
+    this.deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    const { outcome } = await this.deferredPrompt.userChoice;
+    console.log(`User response: ${outcome}`);
+    // We no longer need the prompt, clear it up
+    this.deferredPrompt = null;
   }
 }
