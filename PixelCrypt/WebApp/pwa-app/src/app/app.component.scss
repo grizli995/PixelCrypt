@@ -16,6 +16,8 @@
 .input-field {
   display: block;
   margin-bottom: 15px;
+  height: 2rem;
+  font-size: 1.5rem;
 }
 
 mat-radio-group {
@@ -30,8 +32,7 @@ mat-radio-group {
 
 .mat-mdc-form-field {
   color: white;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  margin: 3rem;
 }
 
 .mat-form-field .mat-form-field-underline {
@@ -51,7 +52,7 @@ mat-radio-group {
 }
 
 .embed-extract-label {
-  font-size: 24px;
+  font-size: 2rem;
   margin-bottom: 10px;
   text-align: center;
   color: #3f51b5; /* Set the color to match the submit button */
@@ -103,6 +104,7 @@ mat-radio-group {
   display: block;
   margin: 1rem auto;
   transform: scale(1.5);
+  margin-top:2rem;
 }
 
 .mat-form-field {
@@ -160,6 +162,7 @@ mat-radio-group {
 
 .results-card{
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .download-link-text {
@@ -170,4 +173,88 @@ mat-radio-group {
   color: rgba(255, 255, 255, 0.5);
   border: rgba(255, 255, 255, 0.5);
   border-bottom-style: groove;
+}
+
+
+.relative-wrapper {
+  position: relative;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.centered-spinner {
+  color: rgba(255,184,28,255) !important; 
+}
+
+.loading-text {
+  color: rgba(255,184,28,255);
+  margin-top: 10px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-card {
+  padding: 30px;
+  font-size: 1.5rem;
+}
+
+.info-card h2 {
+  font-size: 3rem;
+}
+
+.info-card h3 {
+  font-size: 2rem;
+  margin-top:2rem;
+}
+
+.info-card p {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin: 1rem 0; 
+}
+
+.info-card ol {
+  margin: 1rem 0; 
+  
+  border-style: solid;
+  border-width: 0rem;
+  border-bottom-width: 0.5rem;
+}
+.info-card li {
+  padding-bottom: 1rem; /* Add margin at the bottom of each ordered list item */
+}
+
+.highlighted-text {
+  color:rgba(255,184,28,255);
+  font-size: 1.5rem;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin-left: 1rem;
+  /* Add other styles as needed */
+}
+
+.card-container {
+  height: 100vh; 
+  margin-top: 5rem;
 }

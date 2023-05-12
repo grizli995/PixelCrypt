@@ -1,67 +1,106 @@
-<div class="logo-container">
-  <img src="assets/PixelCrypt_logo.png" alt="Your Logo" />
-</div>
-<mat-card>
-  <mat-slide-toggle
-  [checked]="embedExtractOption === 'embed'"
-  (change)="onEmbedExtractChange($event.checked)"
-  class="embed-extract-toggle"
->
-  {{ embedExtractOption === 'embed' ? 'Embed' : 'Extract' }}
-</mat-slide-toggle>
-
-  <form [formGroup]="embedExtractForm" (ngSubmit)="onSubmit()">
-    <div *ngIf="embedExtractOption === 'embed'">
+<div class="relative-wrapper card-container" >
+  <div>
+  <div class="logo-container">
+    <img src="assets/PixelCrypt_logo.png" alt="Your Logo" />
+  </div>
+  <mat-card>
+    <mat-slide-toggle
+    [checked]="embedExtractOption === 'embed'"
+    (change)="onEmbedExtractChange($event.checked)"
+    class="embed-extract-toggle"
+  >
+    {{ embedExtractOption === 'embed' ? 'Embed' : 'Extract' }}
+  </mat-slide-toggle>
+  
+    <form [formGroup]="embedExtractForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="embedExtractOption === 'embed'">
+        <mat-form-field appearance="fill" class="input-field">
+          <mat-label>Message</mat-label>
+          <input matInput formControlName="message" />
+        </mat-form-field>
+      </div>
+  
       <mat-form-field appearance="fill" class="input-field">
-        <mat-label>Message</mat-label>
-        <input matInput formControlName="message" />
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
       </mat-form-field>
+  
+      <div *ngIf="embedExtractOption === 'embed'">
+        <input
+          type="file"
+          id="imageToUpload"
+          (change)="onImageUpload($event)"
+          class="input-image-upload centered-element"
+        />
+      </div>
+  
+      <div *ngIf="embedExtractOption === 'extract'">
+        <input
+          type="file"
+          id="imageToExtract"
+          (change)="onImageUpload($event)"
+          class="input-image-upload centered-element"
+        />
+      </div>
+  
+      <button mat-raised-button color="primary" type="submit" class="submit-button centered-element" [disabled]="isSubmitButtonDisabled">Submit</button> 
+    </form>
+  </mat-card>
+  
+  <mat-card class="results-card">
+    <h2 class="results-label">Results</h2>
+  
+    <ng-container *ngIf="embedExtractOption === 'embed' && hasEmbedResult">
+      <p class="centered-element">Download link:</p>
+      <a *ngIf="downloadLink" [href]="downloadLink" download class="download-link centered-element download-link-text">
+        Download Encrypted Image
+      </a>
+      <p *ngIf="!downloadLink" class="centered-element">Failed to generate download link.</p>
+    </ng-container>
+  
+    <ng-container *ngIf="embedExtractOption === 'extract' && hasExtractResult">
+      <div class="message-container centered-element">
+        <p class="extracted-message-tittle">Extracted message: </p>
+        <p class="extracted-message">{{ extractedMessage }}</p>
+      </div>
+    </ng-container>
+  </mat-card>
+  <mat-card class="info-card">
+    <div class="centered-element">
+      <h2 class="centered-element">How It Works?</h2>
+
     </div>
-
-    <mat-form-field appearance="fill" class="input-field">
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" />
-    </mat-form-field>
-
-    <div *ngIf="embedExtractOption === 'embed'">
-      <input
-        type="file"
-        id="imageToUpload"
-        (change)="onImageUpload($event)"
-        class="input-image-upload centered-element"
-      />
+      <p class="centered-element">Welcome to <span class="highlighted-text">PixelCrypt</span>, a tool for secure message hiding within images using
+        password-based steganography.</p>
+      <h3 class="centered-element">Embed a Message</h3>
+      <ol>
+        <li>Toggle to <span class="highlighted-text">'Embed'</span>.<img src="assets/icons/newspaper.png" class="icon" alt="EmbedIcon"></li>
+        <li>Enter your <span class="highlighted-text">message</span>. <img src="assets/icons/comments.png" class="icon" alt="EmbedIcon"></li>
+        <li>Set a strong, unique <span class="highlighted-text">password</span>. <img src="assets/icons/password.png" class="icon" alt="EmbedIcon"></li>
+        <li><span class="highlighted-text">Upload</span> an <span class="highlighted-text">image</span> (JPEG, PNG, or BMP). <img src="assets/icons/photo.png" class="icon" alt="EmbedIcon"></li>
+        <li>Click <span class="highlighted-text">'Submit'</span> to generate an encrypted image. <img src="assets/icons/submit.png" class="icon" alt="EmbedIcon"></li>
+        <li><span class="highlighted-text">Download</span> the encrypted image. <img src="assets/icons/download.png" class="icon" alt="EmbedIcon"></li>
+      </ol>
+      <h3 class="centered-element">Extract a Message</h3>
+      <ol>
+        <li>Toggle to <span class="highlighted-text">'Extract'</span><img src="assets/icons/folder.png" class="icon" alt="ExtractIcon"></li>
+        <li>Enter the <span class="highlighted-text">password</span>. <img src="assets/icons/password.png" class="icon" alt="EmbedIcon"></li>
+        <li><span class="highlighted-text">Upload</span> the <span class="highlighted-text">image</span> with the hidden message. <img src="assets/icons/photo.png" class="icon" alt="EmbedIcon"></li>
+        <li>Click <span class="highlighted-text">'Submit'</span> to extract the message. <img src="assets/icons/submit.png" class="icon" alt="EmbedIcon"></li>
+        <li><span class="highlighted-text">Read</span> the extracted message in the <span class="highlighted-text">'Results'</span> section. <img src="assets/icons/comments.png" class="icon" alt="EmbedIcon"></li>
+      </ol>
+      <p class="centered-element">Note: The encryption/decryption process may take some time. PixelCrypt ensures privacy
+        but requires a strong password for optimal security.</p>
+      <p class="centered-element">You're now ready to use PixelCrypt. Enjoy!</p>
+  </mat-card>
+  
+</div>
+  
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner-container"> 
+      <mat-spinner diameter="70" class="centered-spinner" color="warn"></mat-spinner>
+      <p class="loading-text">Processing...</p>
     </div>
+  </div>
+</div>
 
-    <div *ngIf="embedExtractOption === 'extract'">
-      <input
-        type="file"
-        id="imageToExtract"
-        (change)="onImageUpload($event)"
-        class="input-image-upload centered-element"
-      />
-    </div>
-
-    <button mat-raised-button color="primary" type="submit" class="submit-button centered-element" [disabled]="isSubmitButtonDisabled">Submit</button>
-  </form>
-</mat-card>
-
-<mat-card class="results-card">
-  <h2 class="results-label">Results</h2>
-
-  <ng-container *ngIf="embedExtractOption === 'embed' && hasEmbedResult">
-    <p class="centered-element">Download link:</p>
-    <a *ngIf="downloadLink" [href]="downloadLink" download class="download-link centered-element download-link-text">
-      Download Encrypted Image
-    </a>
-    <p *ngIf="!downloadLink" class="centered-element">Failed to generate download link.</p>
-  </ng-container>
-
-  <ng-container *ngIf="embedExtractOption === 'extract' && hasExtractResult">
-    <div class="message-container centered-element">
-      <p class="extracted-message-tittle">Extracted message: </p>
-      <p class="extracted-message">{{ extractedMessage }}</p>
-    </div>
-  </ng-container>
-</mat-card>
-<script src="node_modules/eruda/eruda.js"></script>
-<script>eruda.init();</script>

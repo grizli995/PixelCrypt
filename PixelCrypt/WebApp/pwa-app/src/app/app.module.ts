@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSlideToggleModule,
     HttpClientModule,
     FormsModule, 
+    MatProgressSpinnerModule , 
     MatRadioModule, 
   ],
   providers: [],

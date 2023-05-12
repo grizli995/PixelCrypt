@@ -19,6 +19,8 @@ export class AppComponent {
   isSubmitButtonDisabled = false;
   uploadedImage: File | null = null;
   downloadLink = '';
+  isLoading = false;
+
 
   constructor(private formBuilder: FormBuilder,
     private embedExtractService: EmbedExtractService,
@@ -35,6 +37,7 @@ export class AppComponent {
 
   onSubmit() {
     this.isSubmitButtonDisabled = true;
+    this.isLoading = true;
     console.log(this.embedExtractForm.value);
     if (this.uploadedImage) {
       if (this.embedExtractOption === 'embed') {
@@ -52,11 +55,13 @@ export class AppComponent {
               this.createDownloadLink();
               console.log('Embed response:', response);
               this.isSubmitButtonDisabled = false;
+              this.isLoading = false;
             }),
             catchError((error) => {
               if (!error.message) return of(null);
               console.error('Error during embed request:', error.message);
               this.isSubmitButtonDisabled = false;
+              this.isLoading = false;
               return of(null);
             })
           )
@@ -73,11 +78,13 @@ export class AppComponent {
               this.hasExtractResult = true;
               this.extractedMessage = response.message;
               this.isSubmitButtonDisabled = false;
+              this.isLoading = false;
             }),
             catchError((error) => {
               if (!error.message) return of(null);
               console.error('Error during extract request:', error.message);
               this.isSubmitButtonDisabled = false;
+              this.isLoading = false;
               return of(null);
             })
           )
