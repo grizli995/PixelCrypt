@@ -1,6 +1,6 @@
 {
-  "name": "pwa-app",
-  "short_name": "pwa-app",
+  "name": "Pixel Crypt",
+  "short_name": "Pixel Crypt",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
